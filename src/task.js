@@ -18,7 +18,13 @@ export class Task {
     getInputs(type) {
         return Object.keys(this.inputs)
             .filter(key => this.inputs[key][0])
-            .filter(key => this.inputs[key][0].type === type)
+            .filter(key => {
+                let t = this.inputs[key][0].type;
+                if (Array.isArray(t))
+                    return t.includes(type)
+                else
+                    return t === type;
+            })
     }
 
     reset() {
