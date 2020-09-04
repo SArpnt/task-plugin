@@ -35,7 +35,7 @@ export class Task {
         if (needReset)
             garbage.push(this);
         
-        if (!this.outputData) {
+        //if (!this.outputData) {
             var inputs = {};
 
             await Promise.all(this.getInputs('output').map(async key => {
@@ -57,7 +57,7 @@ export class Task {
                             await f.task.run(data, false, garbage)
                         )
                 );
-        }
+        //}
         
         if (needReset)
             garbage.map(t => t.reset());
